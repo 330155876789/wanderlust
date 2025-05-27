@@ -1,0 +1,56 @@
+<% layout('layouts/boilerplate') %>
+
+    <body>
+        <div class="card show-card" >
+            <img src="<%= listing.image.url %>" class="card-img-top show-card-image" alt="listingimage...">
+            <div class="card-body show-card-body">
+                <p><strong>Description:</strong>
+                    <%= listing.description %>
+                </p>
+                <p><strong>Price:</strong> <span>₹</span> <%= listing.price %>
+                </p>
+                <p><strong>Location:</strong>
+                    <%= listing.location %>, <%= listing.country %>
+                </p>
+                <div class="show-body-button">
+                  
+                <form action="/listings/<%= listing.id %>/edit" method="GET">
+                    <button class="btn-outline-primary" type="submit">Edit Listing</button>
+                </form>
+                <form action="/listings/<%= listing.id %>/delete?_method=DELETE" method="POST">
+                    <button class="btn-outline-danger" type="submit">Delete Listing</button>
+                </form>
+                </div>
+                
+            </div>
+        </div>
+        <!-- <div class="container">
+            <div class="title">
+            <h1>  
+                <%= listing.title %>
+            </h1>
+            </div>
+            <div class="show-image">
+                <img class="image" src="<%= listing.image.url %>" alt="<%= listing.title %>">
+
+            </div>
+            <div class="show-info">
+                <p><strong>Description:</strong>
+                    <%= listing.description %>
+                </p>
+                <p><strong>Price:</strong> $<%= listing.price %>
+                </p>
+                <p><strong>Location:</strong>
+                    <%= listing.location %>, <%= listing.country %>
+                </p>
+                <a href="/listings">Back to Listings</a>
+                <form action="/listings/<%= listing.id %>/edit" method="GET">
+                    <button type="submit">Edit Listing</button>
+                </form>
+                <form action="/listings/<%= listing.id %>/delete?_method=DELETE" method="POST">
+                    <button type="submit">Delete Listing</button>
+                </form>
+            </div>
+        </div> -->
+
+    </body>

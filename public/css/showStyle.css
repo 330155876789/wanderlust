@@ -1,0 +1,18 @@
+.show-card{
+    margin: 1rem;
+    width: 30rem;
+    height: auto;
+}
+.show-card-body{
+   margin: 3px 10px 10px 10px;
+}
+.show-card-image{
+   height: 20rem;
+
+}
+.show-body-button{
+    display: flex;
+    justify-content:space-evenly ;
+    align-content:space-evenly ;
+    padding: 2rem 0 5px 0;
+}

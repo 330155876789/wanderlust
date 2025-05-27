@@ -1,0 +1,24 @@
+<% layout('layouts/boilerplate') %>
+<body>
+ 
+    <div class="container mt-5 mb-5">
+        <h2>Edit Listing</h2>
+         <form action="/listings/<%= listing._id %>?_method=PATCH" method="POST">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="<%= listing.title %>" required>
+
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"
+                required><%= listing.description %></textarea>
+        </div>
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" value="<%= listing.price %>" required>
+
+        <button type="submit">Update Listing</button>
+    </form>
+    </div>
+   
+</body>
+
+</html>

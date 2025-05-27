@@ -1,0 +1,44 @@
+<% layout('layouts/boilerplate') %>
+
+    <body>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Create New Listing</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="/listings" method="POST">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title:</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Image URL:</label>
+                           <input type="text" class="form-control" id="image" name="image[url]" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description:</label>
+                            <textarea class="form-control" id="description" name="description" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Price:</label>
+                            <input type="number" class="form-control" id="price" name="price" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Location:</label>
+                            <input type="text" class="form-control" id="location" name="location" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="country" class="form-label">Country:</label>
+                            <input type="text" class="form-control" id="country" name="country" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Create Listing</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
