@@ -53,7 +53,6 @@ app.get("/listings/new", (req, res) => {
 });
 
 app.post('/listings', async (req, res) => {
-// const { title, image, description, price, location, country } = req.body;
 
 const newListing = new Listing({
   title: req.body.title,
