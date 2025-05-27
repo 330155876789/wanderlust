@@ -53,18 +53,21 @@ app.get("/listings/new", (req, res) => {
 });
 
 app.post('/listings', async (req, res) => {
-const { title, image, description, price, location, country } = req.body;
+// const { title, image, description, price, location, country } = req.body;
 
 const newListing = new Listing({
-  title,
-  image: { url: image }, // ✅ manually wrapping it
-  description,
-  price,
-  location,
-  country
+  title: req.body.title,
+  description: req.body.description,
+  price: req.body.price,
+  location: req.body.location,
+  country: req.body.country,
+  image: {
+    url: req.body.image.url
+  }
 });
 
- console.log("Received form data:", req.body);
+
+//  console.log("Received form data:", req.body);
   console.log("New listing object:", newListing);
    await newListing.save();
   //  console.log(newListing);

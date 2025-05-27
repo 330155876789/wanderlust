@@ -9,10 +9,10 @@ const dataSchema = new Schema({
     type: String
   },
   image: {
-    url: {
-      type: String
-    }
+    url: String,
+    filename: String
   },
+
   price: {
     type: Number,
     default: 0
