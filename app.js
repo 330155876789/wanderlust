@@ -64,10 +64,8 @@ const newListing = new Listing({
     url: req.body.image.url
   }
 });
-
-
 //  console.log("Received form data:", req.body);
-  console.log("New listing object:", newListing);
+//   console.log("New listing object:", newListing);
    await newListing.save();
   //  console.log(newListing);
    res.redirect(`/listings/${newListing._id}`);

@@ -135,3 +135,16 @@ footer {
   margin: 0 10px;
   list-style: none;
 }
+
+
+/* new listing form */
+.button {
+  background-color: rgb(229, 13, 13);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  align-self: center;
+  cursor: pointer;
+}

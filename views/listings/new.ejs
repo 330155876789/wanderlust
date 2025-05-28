@@ -2,43 +2,130 @@
 
     <body>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>Create New Listing</h1>
+        <form class="row g-3 needs-validation" action="/listings" method="POST" novalidate>
+            <div class="col-md-6 ">
+                <label for="title" class="form-label">Title:</label>
+                <input type="text" class=" form-control" id="title" name="title" required>
+                 <div class="valid-feedback">
+                    Looks good!
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <form action="/listings" method="POST">
-                        <div class="mb-3">
-                            <label for="title" class="form-label">Title:</label>
-                            <input type="text" class="form-control" id="title" name="title" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="image" class="form-label">Image URL:</label>
-                           <input type="text" class="form-control" id="image" name="image[url]" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Description:</label>
-                            <textarea class="form-control" id="description" name="description" required></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="price" class="form-label">Price:</label>
-                            <input type="number" class="form-control" id="price" name="price" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="location" class="form-label">Location:</label>
-                            <input type="text" class="form-control" id="location" name="location" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="country" class="form-label">Country:</label>
-                            <input type="text" class="form-control" id="country" name="country" required>
-                        </div>
+            <div class="col-md-6">
+                <label for="image" class="form-label">Image URL:</label>
+                <input type="text" class=" form-control" id="image" name="image[url]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="col-md-12 ">
+                <label for="description" class="form-label">Description:</label>
+                <textarea class=" form-control" id="description" name="description" required></textarea>
+                 <div class="invalid-feedback">
+                    Please provide a description.
+                </div>
+            </div>
+            <div class="col-md-12 ">
+                <label for="location" class="form-label">Location:</label>
+                <input type="text" class=" form-control" id="location" name="location" required>
+                <div class="invalid-feedback">
+                    Please provide a valid location.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="country" class="form-label">Country:</label>
+                <input type="text" class=" form-control" id="country" name="country" required>
+                <div class="invalid-feedback">
+                    Please provide a valid country.
+                </div>
+            </div>
+            <div class="col-md-6 ">
+                <label for="price" class="form-label">Price:</label>
+                <input type="number" class=" form-control" id="price" name="price" required>
+                <div class="invalid-feedback">
+                    Please provide a valid price.
+                </div>
+            </div>
+             <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        I agree to the terms and conditions
+                    </label>
+                    <div class="invalid-feedback">
+                        You must agree before submitting.
+                    </div>
+                </div>
+            </div>
 
-                        <button type="submit" class="btn btn-primary">Create Listing</button>
-                    </form>
+            <div class="col-6">
+                <button type="submit" class="btn btn-primary">Create Listing</button>
+            </div>
+        </form>
+        </div>
+        </div>
+
+
+        <!-- <form class="row g-3 needs-validation" action="/listings" method="POST " novalidate>
+
+            <h1>Create New Listing</h1>
+            <div class="col-md-6">
+                <label for="title"  class="form-label">Title</label>
+                <input type="text" name="title" class="form-control" id="title" required>
+                <div class="valid-feedback">
+                    Looks good!
                 </div>
             </div>
-        </div>
+            <div class="col-md-6">
+                <label for="imageurl" class="form-label">Image URL</label>
+                <input type="text" name="image[url]" class="form-control" id="imageurl" required>
+                <div class="invalid-feedback">
+                    Please provide a valid image URL.
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" name="description" id="description" rows="3" required></textarea>
+                <div class="invalid-feedback">
+                    Please provide a description.
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" class="form-control" name="location" id="location" placeholder="Apartment, studio, or floor" required>
+                <div class="invalid-feedback">
+                    Please provide a valid location.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="inputCountry" class="form-label">Country</label>
+                <input type="text" class="form-control" name="country" id="inputCountry" required>
+                <div class="invalid-feedback">
+                    Please provide a valid country.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="inputPrice" class="form-label">Price</label>
+                <input type="number" class="form-control" name="price" id="inputPrice" required>
+                <div class="invalid-feedback">
+                    Please provide a valid price.
+                </div>
+            </div>
+
+
+            <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        I agree to the terms and conditions
+                    </label>
+                    <div class="invalid-feedback">
+                        You must agree before submitting.
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Create Listing</button>
+            </div>
+        </form> -->
+
     </body>
