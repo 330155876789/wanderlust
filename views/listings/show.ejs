@@ -8,7 +8,7 @@
                     <%= listing.description %>
                 </p>
                 <p><strong>Price:</strong> <span>₹</span>
-                    <%= listing.price %>
+                    <%= listing.price.toLocaleString("en-IN") %>
                 </p>
                 <p><strong>Location:</strong>
                     <%= listing.location %>, <%= listing.country %>

@@ -1,23 +1,69 @@
 <% layout('layouts/boilerplate') %>
 <body>
- 
-    <div class="container mt-5 mb-5">
-        <h2>Edit Listing</h2>
-         <form action="/listings/<%= listing._id %>?_method=PATCH" method="POST">
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" value="<%= listing.title %>" required>
+  <body>
+       <h1>Edit Listing</h1>
+        <form class="row g-3 needs-validation" action="/listings/<%= listing._id %>?_method=PATCH" method="POST" novalidate>
+            <div class="col-md-6 ">
+                <label for="title" class="form-label">Title:</label>
+                <input type="text" class=" form-control" id="title" value="<%= listing.title %>" name="title" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please provide a title.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="image" class="form-label">Image URL:</label>
+                <input type="text" class=" form-control" id="image" value="<%= listing.image.url %>" name="image[url]" required>
+                <div class="invalid-feedback">
+                    Please provide a valid image URL.
+                </div>
+            </div> 
+            <div class="col-md-12 ">
+                <label for="description" class="form-label">Description:</label>
+                <textarea class=" form-control" id="description" name="description" required><%= listing.description %></textarea>
+                <div class="invalid-feedback">
+                    Please provide a description.
+                </div>
+            </div>
+            <div class="col-md-12 ">
+                <label for="location" class="form-label">Location:</label>
+                <input type="text" class=" form-control" id="location" value="<%= listing.location %>" name="location" required>
+                <div class="invalid-feedback">
+                    Please provide a valid location.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="country" class="form-label">Country:</label>
+                <input type="text" class=" form-control" id="country" value="<%= listing.country %>" name="country" required>
+                <div class="invalid-feedback">
+                    Please provide a valid country.
+                </div>
+            </div>
+            <div class="col-md-6 ">
+                <label for="price" class="form-label">Price:</label>
+                <input type="number" class=" form-control" id="price" value="<%= listing.price %>" name="price" required>
+                <div class="invalid-feedback">
+                    Please provide a valid price.
+                </div>
+            </div>
+            <!-- <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        I agree to the terms and conditions
+                    </label>
+                    <div class="invalid-feedback">
+                        You must agree before submitting.
+                    </div>
+                </div>
+            </div> -->
 
-        <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"
-                required><%= listing.description %></textarea>
-        </div>
-        <label for="price">Price:</label>
-        <input type="number" id="price" name="price" value="<%= listing.price %>" required>
-
-        <button type="submit">Update Listing</button>
-    </form>
-    </div>
+            <div class="col-6">
+                <button type="submit" class="btn btn-primary">Update Listing</button>
+            </div>
+        </form>
    
 </body>
 
