@@ -1,0 +1,27 @@
+.cols li a{
+    text-decoration: none;
+    color:wheat ;
+ 
+}
+.cols li{
+       margin-left: 2rem;
+}
+.cols ul{
+    list-style: none;
+    display:flex;
+    flex-direction:row;
+  
+}
+
+.footer-cols{
+    display:flex;
+    flex-direction:row; 
+    justify-content: space-between;
+   padding: 0;
+}
+
+.footer-rows{
+    display: flex;
+    flex-direction:row;
+}
+

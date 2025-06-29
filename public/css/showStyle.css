@@ -12,7 +12,7 @@
 }
 .show-body-button{
     display: flex;
-    justify-content:space-evenly ;
-    align-content:space-evenly ;
+    justify-content:space-around;
+    align-content: space-around ;
     padding: 2rem 0 5px 0;
 }
