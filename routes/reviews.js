@@ -17,7 +17,7 @@ let listing = await Listing.findById(req.params.id);
   await newReview.save();
   listing.reviews.push(newReview._id);
   await listing.save();
-   flash('success','Review is Submited!!')
+   req.flash('success','Review is Submited!!')
   res.redirect(`/listings/${listing._id}` );
 }))
 
@@ -28,9 +28,8 @@ router.delete('/:reviewId', asyncWrap(async (req, res) => {
 
   let review = await Review.findByIdAndDelete(reviewId);
   console.log(review)
-   flash('success','Review is Deleted!!')
+   req.flash('success','Review is Deleted!!')
   res.redirect(`/listings/${listing._id}`);
 }));
-
 
 module.exports = router;

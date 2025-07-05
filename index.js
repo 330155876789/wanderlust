@@ -32,14 +32,12 @@ const sessionOptions={
   secret: 'oursecreatekey',
   resave: false,
   saveUninitialized: true,
-  Cookie:{
-    expires:Date.now()+ 7 * 24 * 60 * 60 * 1000,
+  cookie:{
+    expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
     maxAage:7 * 24 * 60 * 60 * 1000,
     HttpOnly:true
   }
 }
-
-app.use(session(sessionOptions))
 
 
 // Routes
@@ -47,11 +45,12 @@ app.get('/', (req, res) => {
   res.send('Welcome to the Wanderlust API');
 });
 
-
+app.use(session(sessionOptions))
 app.use(flash())
 
 app.use((req,res,next)=>{
    res.locals.success=req.flash('success')
+   res.locals.error=req.flash('error')
    next()
 })
 
@@ -68,7 +67,7 @@ app.use((req, res, next) => {
   next(err);
 });
 
-app.use((err, req, res, next) => {
+app.use((err, req, res,next) => {
   const { statusCode = 500, message = 'Something went wrong' } = err;
   // console.send(err.message)
   res.render("error.ejs",{message});
