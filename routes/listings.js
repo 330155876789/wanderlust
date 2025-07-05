@@ -5,8 +5,10 @@ const asyncWrap = require('../utils/asyncwrap');
 const Listing = require('../model/listing');
 const methodeOverride = require('method-override');
 const ejs = require('ejs');
+const flash = require('connect-flash')
 
 router.use(methodeOverride('_method'));
+
 
 
 router.get('/', asyncWrap(async (req, res) => {
@@ -37,10 +39,11 @@ router.post('/', asyncWrap(async (req, res) => {
       url: req.body.image.url
     }
   });
-  // if(!req.body.listing){
-  //   throw new ExpressError("send valid data for listing",400)
-  // }
+  if(!req.body.listing){
+    throw new ExpressError("send valid data for listing",400)
+  }
   await newListing.save();
+  flash('success','Listing is created successfully!!')
   res.redirect(`listings/${newListing._id}`);
 }));
 
@@ -76,6 +79,7 @@ router.patch('/:id', asyncWrap(async (req, res) => {
   if (!listing) {
     return res.status(404).send('Listing not found');
   }
+   flash('success','Listing is Updated!!')
   res.redirect(`/${listing._id}`);
 }));
 
@@ -86,6 +90,7 @@ router.delete('/:id/delete', asyncWrap(async (req, res) => {
   if (!listing) {
     return res.status(404).send('Listing not found');
   }
+   flash('success','Listing is Deleted!!')
   res.redirect('/listings');
 }));
 

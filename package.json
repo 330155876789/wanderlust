@@ -2,6 +2,7 @@
   "name": "wanderlust",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js"
@@ -11,9 +12,11 @@
   "description": "",
   "dependencies": {
     "@types/method-override": "^3.0.0",
+    "connect-flash": "^0.1.1",
     "ejs": "^3.1.10",
     "ejs-mate": "^4.0.0",
     "express": "^5.1.0",
+    "express-session": "^1.18.1",
     "joi": "^17.13.3",
     "method-override": "^3.0.0",
     "module": "^1.2.5",
