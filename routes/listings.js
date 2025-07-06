@@ -9,8 +9,6 @@ const methodeOverride = require('method-override');
 
 router.use(methodeOverride('_method'));
 
-
-
 router.get('/', asyncWrap(async (req, res) => {
   const listings = await Listing.find();
   res.render('listings/index', { listings });
@@ -53,13 +51,11 @@ router.get('/:id',asyncWrap(async (req, res) => {
   const listing = await Listing.findById(id).populate('reviews');
   if (!listing) {
     req.flash('error','Listing are you searching , It does not Exist ')
-    res.redirect('/listings')
+    return res.redirect('/listings')
   }
   //  console.log(id);
   res.render('listings/show', { listing})
-
 }));
-
 
 // update route
 router.get("/:id/edit", asyncWrap(async (req, res) => {
