@@ -8,6 +8,7 @@ const listenRoutes = require('./routes/listings.js')
 const reviewsRoutes =require('./routes/reviews.js')
 const session = require('express-session')
 const flash = require('connect-flash')
+const register = require('./routes/user.js')
 
 // Connect to MongoDB
 main().then(() => {
@@ -53,6 +54,7 @@ app.use((req,res,next)=>{
    res.locals.error=req.flash('error')
    next()
 })
+
 
 // Listings routes
 app.use('/listings', listenRoutes);
