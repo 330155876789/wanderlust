@@ -4,6 +4,7 @@ const  ExpressError = require('../utils/expressError');
 const asyncWrap = require('../utils/asyncwrap');
 const Listing = require('../model/listing');
 const methodeOverride = require('method-override');
+const {isLoggedIn}=require('../middleware.js')
 // const ejs = require('ejs');
 
 
@@ -15,20 +16,13 @@ router.get('/', asyncWrap(async (req, res) => {
 }));
 
 // create route
-router.get("/new", (req, res) => {
-  let { price } = req.query;
-  if (price) {
-    price = parseFloat(price);
-    if (isNaN(price) || price < 0) {
-      return res.status(400).send('Invalid price');
-    }
-  }
-  res.render("listings/new", { price }); // Pass the price to the form
+router.get("/new",isLoggedIn,(req, res) => {
+  res.render("listings/new.ejs"); // Pass the price to the form
 });
 
-router.post('/', asyncWrap(async (req, res) => {
+router.post('/',isLoggedIn, asyncWrap(async (req, res) => {
   const newListing = new Listing({
-    title: req.body.title,
+    title: req.body.title, 
     description: req.body.description,
     price: req.body.price,
     location: req.body.location,
@@ -58,7 +52,7 @@ router.get('/:id',asyncWrap(async (req, res) => {
 }));
 
 // update route
-router.get("/:id/edit", asyncWrap(async (req, res) => {
+router.get("/:id/edit",isLoggedIn, asyncWrap(async (req, res) => {
   const { id } = req.params;
   const listing = await Listing.findById(id);
   // console.log(listing);
@@ -80,7 +74,7 @@ router.patch('/:id', asyncWrap(async (req, res) => {
 }));
 
 // delete route
-router.delete('/:id/delete', asyncWrap(async (req, res) => {
+router.delete('/:id/delete',isLoggedIn, asyncWrap(async (req, res) => {
   const { id } = req.params;
   const listing = await Listing.findByIdAndDelete(id);
   if (!listing) {

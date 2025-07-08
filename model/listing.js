@@ -29,7 +29,7 @@ const dataSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Review'
   }],
-});
+},{timestamps:true});
 
 // Middleware to validate price
 dataSchema.post('findOneAndDelete' , async (Listing) => {

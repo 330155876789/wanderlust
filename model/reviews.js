@@ -21,7 +21,7 @@ const reviewSchema = new Schema({
     ref: 'Listing',
     required: true
   }
-});
+},{timestamps:true});
 
 const Review = mongoose.model('Review', reviewSchema);
 module.exports = Review;

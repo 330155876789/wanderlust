@@ -4,11 +4,14 @@ const app = express();
 const path = require('path');
 const methodeOverride = require('method-override');
 const ejsMate = require('ejs-mate');
-const listenRoutes = require('./routes/listings.js')
+const listingRoutes = require('./routes/listings.js')
 const reviewsRoutes =require('./routes/reviews.js')
+const userRouts=require('./routes/user.js')
 const session = require('express-session')
 const flash = require('connect-flash')
-const register = require('./routes/user.js')
+const passport = require('passport');
+const LocalStrategy =require('passport-local')
+const Usermodel=require('./model/user.models.js')
 
 // Connect to MongoDB
 main().then(() => {
@@ -49,6 +52,14 @@ app.get('/', (req, res) => {
 app.use(session(sessionOptions))
 app.use(flash())
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(Usermodel.authenticate()))
+
+passport.serializeUser(Usermodel.serializeUser());
+passport.deserializeUser(Usermodel.deserializeUser());
+
+
 app.use((req,res,next)=>{
    res.locals.success=req.flash('success')
    res.locals.error=req.flash('error')
@@ -57,10 +68,13 @@ app.use((req,res,next)=>{
 
 
 // Listings routes
-app.use('/listings', listenRoutes);
+app.use('/listings', listingRoutes);
 
 // Reviews routes
 app.use( "/listings/:id/review", reviewsRoutes)
+
+// Signup and Login 
+app.use('/',userRouts)
 
 // Error handling middleware
 
