@@ -37,6 +37,9 @@ body {
   color: rgb(229, 13, 13);
   /* font-size: scale(1.1); */
 }
+#userDropdown{
+  margin-left: 50px;
+}
 
 .custom-card {
     /* border: 2px solid #333; */

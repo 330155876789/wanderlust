@@ -23,10 +23,27 @@
           <a class="nav-link " aria-disabled="true">About us</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
+      <form class="d-flex mr-4" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
+
+
+      <div class="dropdown ml-2" id="userDropdown">
+        <a href="#" class="d-flex align-items-center text-light text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://cdn-icons-png.flaticon.com/512/1077/1077012.png" alt="user" width="32" height="32" class="rounded-circle">
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="dropdownUser">
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <% if(!currUser){ %>
+          <li><a class="dropdown-item" href="/login">Login</a></li>
+          <li><a class="dropdown-item" href="/signup">Sign up</a></li>
+          <% } %>
+          <% if(currUser){ %>
+          <li><a class="dropdown-item" href="/logout">Logout</a></li>
+          <% } %>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
