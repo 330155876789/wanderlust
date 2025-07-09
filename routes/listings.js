@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const  ExpressError = require('../utils/expressError');
+const ExpressError = require('../utils/expressError');
 const asyncWrap = require('../utils/asyncwrap');
 const Listing = require('../model/listing');
 const methodeOverride = require('method-override');
@@ -20,24 +20,29 @@ router.get("/new",isLoggedIn,(req, res) => {
   res.render("listings/new.ejs"); // Pass the price to the form
 });
 
-router.post('/',isLoggedIn, asyncWrap(async (req, res) => {
+router.post('/', isLoggedIn, asyncWrap(async (req, res) => {
+  const { title, description, price, location, country, image } = req.body;
+
+  if (!title || !description || !price) {
+    throw new ExpressError("Missing required fields", 400);
+  }
+
   const newListing = new Listing({
-    title: req.body.title, 
-    description: req.body.description,
-    price: req.body.price,
-    location: req.body.location,
-    country: req.body.country,
+    title,
+    description,
+    price,
+    location,
+    country,
     image: {
-      url: req.body.image.url
+      url: image?.url || ''
     }
   });
-  if(!req.body.listing){
-    throw new ExpressError("send valid data for listing",400)
-  }
-  const savedata = await newListing.save(); 
-  req.flash('success','Listing is created successfully!!')
-  res.redirect(`listings/${newListing._id}`);
+
+  await newListing.save(); 
+  req.flash('success', 'Listing is created successfully!!');
+  res.redirect(`/listings/${newListing._id}`);
 }));
+
 
 // show route
 router.get('/:id',asyncWrap(async (req, res) => {

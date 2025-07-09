@@ -12,6 +12,8 @@ const flash = require('connect-flash')
 const passport = require('passport');
 const LocalStrategy =require('passport-local')
 const Usermodel=require('./model/user.models.js')
+const ExpressError = require('./utils/expressError');
+const cookieParser = require('cookie-parser');
 
 // Connect to MongoDB
 main().then(() => {
@@ -31,26 +33,26 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodeOverride('_method'));
 app.engine('ejs', ejsMate);
+app.use(cookieParser());
 
 const sessionOptions={
   secret: 'oursecreatekey',
   resave: false,
   saveUninitialized: true,
-  cookie:{
-    expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
-    maxAage:7 * 24 * 60 * 60 * 1000,
-    HttpOnly:true
-  }
+  cookie: {
+  expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7),
+  maxAge: 7 * 24 * 60 * 60 * 1000,
+  httpOnly: true
 }
-
-
-// Routes
-app.get('/', (req, res) => {
-  res.send('Welcome to the Wanderlust API');
-});
-
+}
 app.use(session(sessionOptions))
 app.use(flash())
+// app.use((req, res, next) => {
+//   if (!['/login', '/register'].includes(req.originalUrl) && req.method === 'GET') {
+//     req.session.returnTo = req.originalUrl;
+//   }
+//   next();
+// });
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -67,6 +69,10 @@ app.use((req,res,next)=>{
    next()
 })
 
+// Routes
+app.get('/', (req, res) => {
+  res.send('Welcome to the Wanderlust API');
+})
 
 // Listings routes
 app.use('/listings', listingRoutes);
@@ -78,6 +84,8 @@ app.use( "/listings/:id/review", reviewsRoutes)
 app.use('/',userRouts)
 
 // Error handling middleware
+
+
 
 app.use((req, res, next) => {
   const err = new ExpressError('Page Not Found', 404);
